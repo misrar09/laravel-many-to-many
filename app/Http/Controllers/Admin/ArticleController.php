@@ -37,6 +37,7 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
         $validated = $request->validated();
+
         $newArticle = new Article();
         $newArticle->fill($validated);
         $newArticle->save();
@@ -69,12 +70,12 @@ class ArticleController extends Controller
     {
         $validated = $request->validated();
 
-
         $article->fill($validated);
         $article->update();
 
         return redirect()->route("admin.articles.index");
     }
+
 
 
     /**

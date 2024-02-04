@@ -32,16 +32,16 @@
                         placeholder="Insert Descriptoin" name= "description"
                         value="{{ old('description') ?? $article->description }}">
                 </div>
+                <div class="mb-3">
+                    <label for="conclusion" class="form-label">Conslusion</label>
+                    <input type="text" class="form-control @error('conclusion') is-invalid @enderror" id="conclusion"
+                        placeholder="Insert Conslution" name= "conclusion"
+                        value="{{ old('conclusion') ?? $article->conclusion }}">
+                </div>
+                <button type="submit" class="btn btn-primary">Modify</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="conclusion" class="form-label">Conslusion</label>
-            <input type="text" class="form-control @error('conclusion') is-invalid @enderror" id="conclusion"
-                placeholder="Insert Conslution" name= "conclusion" value="{{ old('conclusion') ?? $article->conclusion }}">
-        </div>
+        <a href="{{ route('admin.articles.index') }}" class="btn btn-secondary w-25 mt-3 mb-5 text-white">Go Back</a>
     </div>
-    <button type="submit" class="btn btn-primary">Modify</button>
-    </form>
-    <a href="{{ route('admin.articles.index') }}" class="btn btn-secondary w-25 mt-3 mb-5 text-white">Go Back</a>
-    </div>
-    </div>
+
 @endsection
