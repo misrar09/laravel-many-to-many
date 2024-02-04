@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller; // Controller di base da importare
 use App\Models\Article;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
+use App\Models\Author;
 
 class ArticleController extends Controller
 {
@@ -28,7 +29,8 @@ class ArticleController extends Controller
     public function create()
     {
 
-        return view("admin.articles.create");
+        $authors = Author::all();
+        return view("admin.articles.create", compact('authors'));
     }
 
     /**
@@ -41,6 +43,10 @@ class ArticleController extends Controller
         $newArticle = new Article();
         $newArticle->fill($validated);
         $newArticle->save();
+
+        if ($request->authors) {
+            $newArticle->authors()->attach($request->authors);
+        }
 
         return redirect()->route("admin.articles.index");
     }

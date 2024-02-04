@@ -38,9 +38,21 @@
                     <input type="text" class="form-control @error('conclusion') is-invalid @enderror" id="conclusion"
                         placeholder="Insert Conslution" name= "conclusion" value="{{ old('conclusion') }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Insert</button>
-            </form>
-            <a href="{{ route('admin.articles.index') }}" class="btn btn-secondary w-25 mt-3 mb-5 text-white">Go Back</a>
+                <div class="mb-3">
+                    <label for="exampleSelect" class="form-label">Select multiple options</label>
+                    <select class="form-select" name="authors[]" id="authors" multiple>
+
+                        @foreach ($authors as $author)
+                            <option value="{{ $author->id }}">{{ $author->name }}</option>
+                        @endforeach
+
+                    </select>
+                </div>
         </div>
+
+        <button type="submit" class="btn btn-primary">Insert</button>
+        </form>
+        <a href="{{ route('admin.articles.index') }}" class="btn btn-secondary w-25 mt-3 mb-5 text-white">Go Back</a>
+    </div>
     </div>
 @endsection

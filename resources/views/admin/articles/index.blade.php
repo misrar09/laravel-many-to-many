@@ -15,6 +15,18 @@
                             {{ $article->type ? $article->type->name : 'No Type' }}
 
                         </div>
+                        <div class="card-footer">
+                            <span><strong>Authors:</strong></span>
+                            @if (count($article->authors) > 0)
+                                @foreach ($article->authors as $author)
+                                    {{ $author->name }}
+                                    ({{ $author->country }})
+                                @endforeach
+                            @else
+                                <span>No Author found</span>
+                            @endif
+
+                        </div>
                     </div>
                     <div>
                         <a href="{{ route('admin.articles.edit', $article->id) }}"
