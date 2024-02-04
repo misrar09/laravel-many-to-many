@@ -38,7 +38,19 @@
                         placeholder="Insert Conslution" name= "conclusion"
                         value="{{ old('conclusion') ?? $article->conclusion }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Modify</button>
+                <div class="mb-3">
+                    <label for="exampleSelect" class="form-label">Select multiple options</label>
+                    <select class="form-select" name="authors[]" id="authors" multiple>
+
+                        @foreach ($authors as $author)
+                            <option value="{{ $author->id }}">{{ $author->name }}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Modify</button>
+                </div>
             </form>
         </div>
         <a href="{{ route('admin.articles.index') }}" class="btn btn-secondary w-25 mt-3 mb-5 text-white">Go Back</a>

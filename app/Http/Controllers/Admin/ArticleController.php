@@ -64,8 +64,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-
-        return view("admin.articles.edit", compact("article"));
+        $authors = Author::all();
+        return view("admin.articles.edit", compact("article", 'authors'));
     }
 
 
@@ -78,6 +78,11 @@ class ArticleController extends Controller
 
         $article->fill($validated);
         $article->update();
+
+        if ($request->authors) {
+            $article->authors()->attach($request->authors);
+        }
+
 
         return redirect()->route("admin.articles.index");
     }
